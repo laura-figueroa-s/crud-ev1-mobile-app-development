@@ -12,16 +12,18 @@
   </ion-header>
 <br>
   <div class="container">
-    <ion-input label="Nombre de la película" label-placement="floating" fill="outline" placeholder="Ingresa el nombre de la película" [clearInput]="true" [(ngModel)]="nuevaPelicula.name"></ion-input>
-    <br>
-    <ion-input label="Año de la película" label-placement="floating" fill="outline" placeholder="Ingresa el año de lanzamiento" [clearInput]="true" [(ngModel)]="nuevaPelicula.year"></ion-input>
-    <br>
-    <ion-input label="Director de la película" label-placement="floating" fill="outline" placeholder="Ingresa el director" [clearInput]="true" [(ngModel)]="nuevaPelicula.director"></ion-input>
-    <br>
-    <ion-input label="Descripción de la película" label-placement="floating" fill="outline" placeholder="Ingresa un breve resumen" [clearInput]="true" [(ngModel)]="nuevaPelicula.description"></ion-input>
-    <br>
-    <ion-input label="Link de la imagen" label-placement="floating" fill="outline" placeholder="Ingresa el link de la imagen" [clearInput]="true" [(ngModel)]="nuevaPelicula.imagenUrl"></ion-input>
-    <br>
-    <ion-button shape="round" (click)="addPelicula()">Enviar</ion-button>
+    <form [formGroup]="peliculaForm" (ngSubmit)="addPelicula()">
+      <ion-input label="Nombre de la película" label-placement="floating" fill="outline" placeholder="Ingresa el nombre de la película" [clearInput]="true" formControlName="name"></ion-input>
+      <br>
+      <ion-input label="Año de la película" label-placement="floating" fill="outline" placeholder="Ingresa el año de lanzamiento" [clearInput]="true" formControlName="year"></ion-input>
+      <br>
+      <ion-input label="Director de la película" label-placement="floating" fill="outline" placeholder="Ingresa el director" [clearInput]="true" formControlName="director"></ion-input>
+      <br>
+      <ion-input label="Descripción de la película" label-placement="floating" fill="outline" placeholder="Ingresa un breve resumen" [clearInput]="true" formControlName="description"></ion-input>
+      <br>
+      <ion-input label="Link de la imagen" label-placement="floating" fill="outline" placeholder="Ingresa el link de la imagen" [clearInput]="true" formControlName="imagenUrl"></ion-input>
+      <br>
+      <ion-button class="ion-justify-content-center" shape="round" (click)="addPelicula()">Enviar</ion-button>
+    </form>
   </div>
 </ion-content>
