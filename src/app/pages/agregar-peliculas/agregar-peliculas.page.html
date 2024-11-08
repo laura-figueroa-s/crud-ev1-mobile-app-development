@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ingresa una nueva película</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Agregar una película</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<br>
+  <div class="container">
+    <ion-input label="Nombre de la película" label-placement="floating" fill="outline" placeholder="Ingresa el nombre de la película" [clearInput]="true" [(ngModel)]="nuevaPelicula.name"></ion-input>
+    <br>
+    <ion-input label="Año de la película" label-placement="floating" fill="outline" placeholder="Ingresa el año de lanzamiento" [clearInput]="true" [(ngModel)]="nuevaPelicula.year"></ion-input>
+    <br>
+    <ion-input label="Director de la película" label-placement="floating" fill="outline" placeholder="Ingresa el director" [clearInput]="true" [(ngModel)]="nuevaPelicula.director"></ion-input>
+    <br>
+    <ion-input label="Descripción de la película" label-placement="floating" fill="outline" placeholder="Ingresa un breve resumen" [clearInput]="true" [(ngModel)]="nuevaPelicula.description"></ion-input>
+    <br>
+    <ion-input label="Link de la imagen" label-placement="floating" fill="outline" placeholder="Ingresa el link de la imagen" [clearInput]="true" [(ngModel)]="nuevaPelicula.imagenUrl"></ion-input>
+    <br>
+    <ion-button shape="round" (click)="addPelicula()">Enviar</ion-button>
+  </div>
+</ion-content>
