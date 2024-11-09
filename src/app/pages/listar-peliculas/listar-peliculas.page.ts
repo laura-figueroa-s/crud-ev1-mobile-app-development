@@ -23,7 +23,6 @@ export class ListarPeliculasPage implements OnInit {
   }
 
   ngOnInit() {
-    
     this.peliculaService.peliculas$.subscribe(peliculas => {
       this.peliculas = peliculas;
     });

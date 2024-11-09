@@ -14,16 +14,15 @@ import { PeliculaService, Pelicula } from 'src/app/pelicula.service';
   imports: [IonButton, IonInput, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AgregarPeliculasPage implements OnInit {
-  peliculaForm!: FormGroup; // Add "!" to tell TypeScript that it will be initialized in ngOnInit
+  peliculaForm!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder, // Inject FormBuilder to build the form
-    private peliculaService: PeliculaService, // Inject the service
-    private router: Router // Inject router for navigation
+    private formBuilder: FormBuilder,
+    private peliculaService: PeliculaService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    // Initialize the form with a single field 'name'
     this.peliculaForm = this.formBuilder.group({
       name: ['', Validators.required],
       year: ['', Validators.required],
@@ -33,15 +32,14 @@ export class AgregarPeliculasPage implements OnInit {
     });
   }
 
-  // Method to handle form submission
   addPelicula() {
     if (this.peliculaForm.valid) {
-      const nuevaPelicula = this.peliculaForm.value; // Get the form value
-      this.peliculaService.addPelicula(nuevaPelicula); // Call service to add the movie
-      this.peliculaForm.reset(); // Reset the form after submitting
-      this.router.navigate(['/listar-peliculas']); // Optionally, navigate to the list of movies
+      const nuevaPelicula = this.peliculaForm.value;
+      this.peliculaService.addPelicula(nuevaPelicula); 
+      this.peliculaForm.reset();
+      this.router.navigate(['/listar-peliculas']); 
     } else {
-      alert('Todos los campos son obligatorios'); // Alert if the form is invalid
+      alert('Todos los campos son obligatorios');
     }
   }
 }
