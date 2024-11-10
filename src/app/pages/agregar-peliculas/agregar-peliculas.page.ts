@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton } from '@ionic/angular/standalone';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router'
 import { PeliculaService, Pelicula } from 'src/app/pelicula.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class AgregarPeliculasPage implements OnInit {
     private formBuilder: FormBuilder,
     private peliculaService: PeliculaService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.peliculaForm = this.formBuilder.group({
@@ -42,4 +42,9 @@ export class AgregarPeliculasPage implements OnInit {
       alert('Todos los campos son obligatorios');
     }
   }
-}
+
+  // Method to go back to movies list
+  goBack() {
+      this.router.navigate(['/listar-peliculas']); // Navigate to the list of movies
+    }
+  }
