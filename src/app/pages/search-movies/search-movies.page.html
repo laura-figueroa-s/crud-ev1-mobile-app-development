@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Movie List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Correct two-way binding for ion-searchbar -->
+  <ion-searchbar
+    [value]="searchQuery"
+    (ionInput)="searchQuery = $event.target.value || ''"
+    placeholder="Search Movies">
+  </ion-searchbar>
+  <ion-button expand="block" (click)="searchMovies(true)">Search</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let movie of movies">
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.release_date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button *ngIf="currentPage < totalPages" (click)="searchMovies()">Load More</ion-button>
+</ion-content>

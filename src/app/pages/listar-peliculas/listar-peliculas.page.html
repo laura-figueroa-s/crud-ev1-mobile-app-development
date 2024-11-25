@@ -14,6 +14,22 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-searchbar
+    [(ngModel)]="searchQuery"
+    (ionInput)="searchMovies()"
+    placeholder="Search for a movie">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let movie of movies">
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.release_date }}</p>
+        <p>{{ movie.overview }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
   <ion-list>
   <ion-card color="secondary" *ngFor="let pelicula of peliculas; let i = index">
     <img alt="Poster de la película {{pelicula.name}}" src="{{pelicula.imagenUrl}}" />

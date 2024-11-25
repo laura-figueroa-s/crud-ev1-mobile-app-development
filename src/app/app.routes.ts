@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SearchMoviesPage } from './pages/search-movies/search-movies.page';
 
 export const routes: Routes = [
   {
@@ -7,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'listar-peliculas',
+    redirectTo: 'search-movies',
     pathMatch: 'full',
   },
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'detallar-peliculas',
     loadComponent: () => import('./pages/detallar-peliculas/detallar-peliculas.page').then( m => m.DetallarPeliculasPage)
+  },
+  {
+    path: 'search-movies',
+    loadComponent: () => import('./pages/search-movies/search-movies.page').then( m => m.SearchMoviesPage)
   },
 ];
