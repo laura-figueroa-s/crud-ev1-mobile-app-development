@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonItem, IonButton, IonRow, IonCol, IonCard, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonInput, IonText, IonInputPasswordToggle, IonToggle } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonRow, IonCol, IonCard, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonInput, IonText, IonInputPasswordToggle, IonToggle } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonToggle, IonText, IonInput, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCol, IonRow, ReactiveFormsModule, IonButton, IonItem, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInputPasswordToggle]
+  imports: [IonToggle, IonText, IonInput, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCol, IonRow, ReactiveFormsModule, IonButton, IonContent, IonHeader, CommonModule, FormsModule, IonInputPasswordToggle]
 })
 export class LoginPage implements OnInit {
 
@@ -25,19 +25,19 @@ export class LoginPage implements OnInit {
     })
   }
 
-  /* onLogin(){
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find((u: any) => u.email === this.email && u.password === this.password);
-
-    if(user){
-      alert('Inicio de sesión exitoso');
-      this.router.navigate(['listar-peliculas']);
-    } else {
-      alert('Correo o contraseña inválidos')
-    }
-  } */
 
   goToRegister() {
     this.router.navigate(['/register']);
+  }
+
+  validateForm(){
+    if(this.form.invalid){
+      this.form.markAllAsTouched();
+      return
+    }
+    const [email, password] = this.form.value;
+    console.log("Email", email)
+    console.log("password", password)
+    this.router.navigate(['listar-peliculas'])
   }
 }
