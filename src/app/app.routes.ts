@@ -7,7 +7,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'listar-peliculas',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -26,4 +26,13 @@ export const routes: Routes = [
     path: 'detallar-peliculas',
     loadComponent: () => import('./pages/detallar-peliculas/detallar-peliculas.page').then( m => m.DetallarPeliculasPage)
   },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
+  },
+
+
 ];

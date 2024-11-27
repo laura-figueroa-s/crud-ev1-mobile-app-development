@@ -4,23 +4,23 @@
     "@ionic/angular"
   ],
   "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#0375dc",
-    "activityBar.background": "#0375dc",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#7e0243",
-    "activityBarBadge.foreground": "#e7e7e7",
-    "commandCenter.border": "#e7e7e799",
-    "sash.hoverBorder": "#0375dc",
-    "statusBar.background": "#025aaa",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#0375dc",
-    "statusBarItem.remoteBackground": "#025aaa",
-    "statusBarItem.remoteForeground": "#e7e7e7",
-    "titleBar.activeBackground": "#025aaa",
-    "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#025aaa99",
-    "titleBar.inactiveForeground": "#e7e7e799"
+    "activityBar.activeBackground": "#d9e3c9",
+    "activityBar.background": "#d9e3c9",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#6c98b3",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#d9e3c9",
+    "statusBar.background": "#c2d2a7",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#abc185",
+    "statusBarItem.remoteBackground": "#c2d2a7",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#c2d2a7",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#c2d2a799",
+    "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "#025aaa"
+  "peacock.color": "#c2d2a7"
 }
