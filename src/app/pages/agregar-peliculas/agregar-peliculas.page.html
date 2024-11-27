@@ -23,8 +23,8 @@
       <br>
       <ion-input label="Link de la imagen" label-placement="floating" fill="outline" placeholder="Ingresa el link de la imagen" [clearInput]="true" formControlName="imagenUrl"></ion-input>
       <br>
-      <ion-button class="ion-justify-content-center" shape="round" (click)="addPelicula()">Enviar</ion-button>
-      <ion-button class="ion-float-right" shape="round" (click)="goBack()">Atrás</ion-button>
+      <ion-button shape="round" (click)="addPelicula()" id="sendButton">Enviar</ion-button>
+      <ion-button shape="round" (click)="goBack()" id="backButton">Atrás</ion-button>
     </form>
   </div>
 </ion-content>
