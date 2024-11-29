@@ -30,9 +30,14 @@ export const routes: Routes = [
   {
     path: 'search-movies',
     loadComponent: () => import('./pages/search-movies/search-movies.page').then( m => m.SearchMoviesPage)
-  },  {
-    path: 'search-movies',
-    loadComponent: () => import('./pages/search-movies/search-movies.page').then( m => m.SearchMoviesPage)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
 
 ];
