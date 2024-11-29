@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Bitácora de Películas
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,34 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Bitácora de Películas</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Como fanático de la peliculas esta página de ayudará a llevar el orden de tus peliculas
+          favoritas!
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Entra ahora e inicia esta emocionante aventura !
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="goToLogin()">Inicia Sección</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+      <ion-col>
+        <ion-text>Si todavía no eres parte de nuestra comunidad:</ion-text>
+        <ion-buttons>
+          <ion-button (click)="goToRegister()">Registrate</ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>
