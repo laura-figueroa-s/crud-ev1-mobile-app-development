@@ -30,6 +30,10 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/register']);
   }
 
+  newUser() {
+    this.router.navigate(['/register']);
+  }
+
   validateForm(){
     if(this.form.invalid){
       this.form.markAllAsTouched();

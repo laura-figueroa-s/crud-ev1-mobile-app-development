@@ -10,18 +10,43 @@
       <ion-title size="large">Agregar una película</ion-title>
     </ion-toolbar>
   </ion-header>
-<br>
+  <br>
   <div class="container">
     <form [formGroup]="peliculaForm" (ngSubmit)="addPelicula()">
-      <ion-input label="Nombre de la película" label-placement="floating" fill="outline" placeholder="Ingresa el nombre de la película" [clearInput]="true" formControlName="name"></ion-input>
+      <ion-input label="Nombre de la película" label-placement="floating" fill="outline"
+        placeholder="Ingresa el nombre de la película" [clearInput]="true" formControlName="name"></ion-input>
       <br>
-      <ion-input label="Año de la película" label-placement="floating" fill="outline" placeholder="Ingresa el año de lanzamiento" [clearInput]="true" formControlName="year"></ion-input>
+      <ion-input label="Año de la película" label-placement="floating" fill="outline"
+        placeholder="Ingresa el año de lanzamiento" [clearInput]="true" formControlName="year"></ion-input>
       <br>
-      <ion-input label="Director de la película" label-placement="floating" fill="outline" placeholder="Ingresa el director" [clearInput]="true" formControlName="director"></ion-input>
+      <ion-input label="Director de la película" label-placement="floating" fill="outline"
+        placeholder="Ingresa el director" [clearInput]="true" formControlName="director"></ion-input>
       <br>
-      <ion-input label="Descripción de la película" label-placement="floating" fill="outline" placeholder="Ingresa un breve resumen" [clearInput]="true" formControlName="description"></ion-input>
+      <ion-input label="Descripción de la película" label-placement="floating" fill="outline"
+        placeholder="Ingresa un breve resumen" [clearInput]="true" formControlName="description"></ion-input>
       <br>
-      <ion-input label="Link de la imagen" label-placement="floating" fill="outline" placeholder="Ingresa el link de la imagen" [clearInput]="true" formControlName="imagenUrl"></ion-input>
+
+      <!-- CAPTURAR FOTO -->
+      <ion-card *ngIf="photo">
+        <ion-img [src]="photo"></ion-img>
+      </ion-card>
+
+      <ion-card *ngIf="location">
+        <ion-card-header>
+          <ion-card-title>Ubicación</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Latitud: {{ location.latitud }}</p>
+          <p>Longitud: {{ location.longitud }}</p>
+          <p>Dirección: {{ address }}</p>
+        </ion-card-content>
+      </ion-card>
+      <ion-input label="Link de la imagen" label-placement="floating" fill="outline"
+        placeholder="Ingresa el link de la imagen" [clearInput]="true" formControlName="imagenUrl"></ion-input>
+      <br>
+
+      <!-- Botón para capturar foto y obtener ubicación -->
+      <ion-button expand="block" (click)="capturePhoto()">Tomar Foto y Obtener Ubicación</ion-button>
       <br>
       <ion-button shape="round" (click)="addPelicula()" id="sendButton">Enviar</ion-button>
       <ion-button shape="round" (click)="goBack()" id="backButton">Atrás</ion-button>
