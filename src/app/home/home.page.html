@@ -16,15 +16,16 @@
   <div id="container">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Como fanático de la peliculas esta página de ayudará a llevar el orden de tus peliculas
+        <ion-card-title>Como fanático de la peliculas, esta app te ayudará a llevar el orden de tus peliculas
           favoritas!
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        Entra ahora e inicia esta emocionante aventura !
+        ¡Entra ahora e inicia esta emocionante aventura!
+        <br/>
         <ion-row>
           <ion-col>
-            <ion-button (click)="goToLogin()">Inicia Sección</ion-button>
+            <ion-button (click)="goToLogin()">Inicia Sesión</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
@@ -34,7 +35,7 @@
       <ion-col>
         <ion-text>Si todavía no eres parte de nuestra comunidad:</ion-text>
         <ion-buttons>
-          <ion-button (click)="goToRegister()">Registrate</ion-button>
+          <ion-button (click)="goToRegister()" slot="center">Regístrate</ion-button>
         </ion-buttons>
       </ion-col>
     </ion-row>
