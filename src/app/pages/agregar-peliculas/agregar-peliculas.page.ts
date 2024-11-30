@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonCard, IonCardHeader, 
-  IonCardContent, IonCardTitle, IonCardSubtitle, IonImg} from '@ionic/angular/standalone';
+  IonCardContent, IonCardTitle, IonImg} from '@ionic/angular/standalone';
 import { Router } from '@angular/router'
 import { PeliculaService, Pelicula } from 'src/app/pelicula.service';
 import { TakePhotoService } from '../../services/take-photo.service';
@@ -14,7 +14,7 @@ import { TakePhotoService } from '../../services/take-photo.service';
   styleUrls: ['./agregar-peliculas.page.scss'],
   standalone: true,
   imports: [IonButton, IonInput, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule,
-     FormsModule, ReactiveFormsModule, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCardSubtitle, IonImg]
+     FormsModule, ReactiveFormsModule, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonImg]
 })
 export class AgregarPeliculasPage implements OnInit {
   peliculaForm!: FormGroup;
@@ -51,9 +51,8 @@ export class AgregarPeliculasPage implements OnInit {
     }
   }
 
-  // Method to go back to movies list
   goBack() {
-      this.router.navigate(['/listar-peliculas']); // Navigate to the list of movies
+      this.router.navigate(['/listar-peliculas']);
     }
 
     async capturePhoto(){

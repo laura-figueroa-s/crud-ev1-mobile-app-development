@@ -14,13 +14,13 @@
 
         <ion-card-content>
           <form [formGroup]="form">
-            <ion-input formControlName="email" label="Email" type="text" placeholder="Email" label-placement="floating" fill="outline"></ion-input>
+            <ion-input formControlName="email" label="Email" type="text" placeholder="Email" label-placement="floating" fill="outline" name="email"></ion-input>
             <ion-text color="danger" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
               <small *ngIf="form.get('email')?.hasError('required')">* El email es obligatorio.</small>
               <small *ngIf="form.get('email')?.hasError('email')">* El formato del email es inválido.</small>
             </ion-text>
             <br/>
-            <ion-input formControlName="password" type="password" label-placement="floating" fill="outline" label="Password" placeholder="Ingrese su contraseña">
+            <ion-input formControlName="password" type="password" label-placement="floating" fill="outline" label="Password" placeholder="Ingrese su contraseña" name="password">
               <ion-input-password-toggle slot="end"></ion-input-password-toggle>
             </ion-input>
             <ion-text color="danger" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">

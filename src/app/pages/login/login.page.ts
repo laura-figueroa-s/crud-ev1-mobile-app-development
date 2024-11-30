@@ -39,7 +39,8 @@ export class LoginPage implements OnInit {
       this.form.markAllAsTouched();
       return
     }
-    const [email, password] = this.form.value;
+    const email = this.form.value.email;
+    const password = this.form.value.password;
     console.log("Email", email)
     console.log("password", password)
     this.router.navigate(['listar-peliculas'])

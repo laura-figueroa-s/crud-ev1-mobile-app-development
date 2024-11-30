@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonList, IonCardContent, IonButton, IonButtons, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonList, IonCardContent, IonButton, IonButtons, IonItem, IonLabel, IonSearchbar } from '@ionic/angular/standalone';
 import { PeliculaService, Pelicula } from 'src/app/pelicula.service'; 
 import { Router } from '@angular/router';
 import { ApiTmdbService } from 'src/app/api-tmdb.service';
@@ -11,25 +11,33 @@ import { ApiTmdbService } from 'src/app/api-tmdb.service';
   templateUrl: './listar-peliculas.page.html',
   styleUrls: ['./listar-peliculas.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItem, IonButtons, IonButton, IonCardContent, IonList, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, IonCardSubtitle, CommonModule, FormsModule]
+  imports: [IonSearchbar, IonLabel, IonItem, IonButtons, IonButton, IonCardContent, IonList, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, IonCardSubtitle, CommonModule, ReactiveFormsModule]
 })
 export class ListarPeliculasPage implements OnInit {
 
+  searchForm!: FormGroup;
   movies: any[] = [];
-  searchQuery: string = '';
+  /* searchQuery: string = ''; */
 
   peliculas: Pelicula[] = [];
 
-  constructor(private peliculaService: PeliculaService, private router: Router, private apiTmdbService: ApiTmdbService) { }
-
-  eliminarPelicula(index:number){
-    this.peliculas.splice(index,1)
-  }
+  constructor(
+    private peliculaService: PeliculaService, 
+    private router: Router, 
+    private apiTmdbService: ApiTmdbService) { }
 
   ngOnInit() {
+    this.searchForm = new FormGroup({
+      query: new FormControl(''),
+    });
+
     this.peliculaService.peliculas$.subscribe(peliculas => {
       this.peliculas = peliculas;
     });
+  }
+
+  eliminarPelicula(index:number){
+    this.peliculas.splice(index,1)
   }
 
   goToAddMovie() {
@@ -40,7 +48,7 @@ export class ListarPeliculasPage implements OnInit {
     this.peliculaService.deletePelicula(index); 
   }
 
-  searchMovies(){
+  /* searchMovies(){
     if(this.searchQuery.trim()){
       this.apiTmdbService.searchMovies(this.searchQuery).subscribe(
         (response) => {
@@ -51,6 +59,25 @@ export class ListarPeliculasPage implements OnInit {
         }
       );
     }
+  } */
+
+    searchMovies(){
+      const query = this.searchForm.get('query')?.value.trim();
+      if(query){
+        this.apiTmdbService.searchMovies(query).subscribe(
+          (response) => {
+            this.movies = response.results;
+          },
+          (error) => {
+            console.error('Error al buscar película:', error);
+          }
+        )
+      }
+    }
+
+  onSearchInput(event: Event): void {
+    const input = event.target as HTMLIonSearchbarElement;
+    this.searchForm.get('query')?.setValue(input.value);
   }
-  
+
 }
