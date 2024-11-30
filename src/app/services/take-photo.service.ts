@@ -15,8 +15,11 @@ export class TakePhotoService {
 
     async takePhoto() {
         try {
+            //Plugin de camara no requiere permisos de por si, solo si usamos la galería
+            //Véase documentación https://capacitorjs.com/docs/apis/camera "The Camera plugin requires no permissions, unless using saveToGallery: true, in that case the following permissions should be added to your AndroidManifest.xml"
+
             const cameraSource = this.platform.is('android') ? CameraSource.Photos : CameraSource.Camera;
-            //tomar foto
+            //Tomar foto
             const image = await Camera.getPhoto({
                 quality: 90,
                 resultType: CameraResultType.Uri,
@@ -45,7 +48,7 @@ export class TakePhotoService {
             console.error('Error al tomar foto o ubicación', error);
             return null;
         }
-    }
+    } //Uso de GPS para obtener coordenadas.
     async getAddressFromCoordinates(latitude: number, longitude: number): Promise<string | null> {
         const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
         try {
@@ -56,6 +59,6 @@ export class TakePhotoService {
           console.error('Error al obtener la dirección:', error);
           return null;
         }
-      }
+    }
 
 }
