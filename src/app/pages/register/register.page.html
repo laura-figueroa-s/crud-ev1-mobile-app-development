@@ -9,10 +9,10 @@
 
         <ion-card-content>
         
-          <form #loginForm="ngForm">
+          <form [formGroup] = "registerForm">
 
-            <ion-input 
-              [(ngModel)]="firstName" 
+            <ion-input
+              formControlName="firstName"
               name="firstName" 
               label="Nombre" 
               label-placement="floating" 
@@ -21,9 +21,8 @@
               required>
             </ion-input>
             <br>
-           
             <ion-input 
-              [(ngModel)]="lastName" 
+              formControlName="lastName" 
               name="lastName" 
               label="Apellido" 
               label-placement="floating" 
@@ -34,7 +33,7 @@
             <br>
             
             <ion-input 
-              [(ngModel)]="email" 
+              formControlName="email" 
               name="email" 
               label="Email" 
               label-placement="floating" 
@@ -44,34 +43,33 @@
               email>
             </ion-input>
             
-            <ion-text color="danger" *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched">
-              <small *ngIf="loginForm.controls['email']?.hasError('required')">* El correo es obligatorio.</small>
-              <small *ngIf="loginForm.controls['email']?.hasError('email')">* Formato de correo inválido.</small>
+            <ion-text color="danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+              <small *ngIf="registerForm.get('email')?.hasError('required')">* El correo es obligatorio.</small>
+              <small *ngIf="registerForm.get('email')?.hasError('email')">* Formato de correo inválido.</small>
             </ion-text>
 
             <br>
 
             <ion-input 
-              [(ngModel)]="password" 
-              name="password" 
-              label-placement="floating" 
-              fill="outline" 
-              type="password" 
-              label="Contraseña" 
-              required 
-              minlength="8">
-              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-            </ion-input>
+            formControlName="password" 
+            label-placement="floating" 
+            fill="outline" 
+            type="password" 
+            label="Contraseña" 
+            required 
+            minlength="8">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
             
-            <ion-text color="danger" *ngIf="loginForm.controls['password']?.invalid && loginForm.controls['password']?.touched">
-              <small *ngIf="loginForm.controls['password']?.hasError('required')">* La contraseña es obligatoria.</small>
-              <small *ngIf="loginForm.controls['password']?.hasError('minlength')">* La contraseña debe contener al menos 8 caracteres.</small>
-            </ion-text>
+          <ion-text color="danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            <small *ngIf="registerForm.get('password')?.hasError('required')">* La contraseña es obligatoria.</small>
+            <small *ngIf="registerForm.get('password')?.hasError('minlength')">* La contraseña debe contener al menos 8 caracteres.</small>
+          </ion-text>
 
             <br>
 
             <ion-input 
-              [(ngModel)]="repeatPassword" 
+              formControlName="repeatPassword" 
               name="repeatPassword" 
               label-placement="floating" 
               fill="outline" 
@@ -82,12 +80,12 @@
               <ion-input-password-toggle slot="end"></ion-input-password-toggle>
             </ion-input> 
 
-            <ion-text color="danger" *ngIf="repeatPassword !== password && repeatPassword && loginForm.controls['repeatPassword']?.touched">
+            <ion-text color="danger" *ngIf="registerForm.get('repeatPassword')?.value !== registerForm.get('password')?.value && registerForm.get('repeatPassword')?.touched">
               <small>* Las contraseñas no coinciden.</small>
             </ion-text>
 
             <br>
-            <ion-button expand="block" [disabled]="loginForm.invalid || repeatPassword !== password" (click)="goToLogin()">Completar registro</ion-button>
+            <ion-button expand="block" [disabled]="registerForm.invalid || registerForm.get('repeatPassword')?.value !== registerForm.get('password')?.value" type="submit">Completar registro</ion-button>
           </form>
         </ion-card-content>
       </ion-card>
