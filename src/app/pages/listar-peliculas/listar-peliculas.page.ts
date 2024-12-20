@@ -98,6 +98,7 @@ export class ListarPeliculasPage implements OnInit {
       };
       this.peliculaService.addPelicula(pelicula);
       console.log(`${pelicula.name} added to your list.`);
+      this.router.navigate(['/listar-peliculas']);
       };
       
   onSearchInput(event: Event): void {
