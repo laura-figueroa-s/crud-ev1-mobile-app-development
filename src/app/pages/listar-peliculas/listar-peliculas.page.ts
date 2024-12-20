@@ -65,45 +65,50 @@ export class ListarPeliculasPage implements OnInit {
     }
   } */
 
-    searchMovies(){
-      const query = this.searchForm.get('query')?.value.trim();
-      if(query){
-        this.apiTmdbService.searchMovies(query).subscribe(
-          (response) => {
-            this.movies = response.results;
-          },
-          (error) => {
-            console.error('Error al buscar película:', error);
-          }
-        )
-      }
+  searchMovies(){
+    const query = this.searchForm.get('query')?.value.trim();
+    if(query){
+      this.apiTmdbService.searchMovies(query).subscribe(
+        (response) => {
+          this.movies = response.results;
+        },
+        (error) => {
+          console.error('Error al buscar película:', error);
+        }
+      )
     }
+  }
 
-    getImageUrl(posterPath: string | null): string{
-      return posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}`
-      : 'assets/images/no-image.png'; // Fallback image
-    }
+  getImageUrl(posterPath: string | null): string{
+    return posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}`
+    : 'assets/images/no-image.png'; // Fallback image
+  }
 
-    getYear(releaseDate: string | null): number {
-      return releaseDate ? parseInt(releaseDate.split('-')[0], 10) : 0;
-    }
+  getYear(releaseDate: string | null): number {
+    return releaseDate ? parseInt(releaseDate.split('-')[0], 10) : 0;
+  }
 
-    addMovie(movie: any){
-      const pelicula: Pelicula = {
-        name: movie.title,
-        year: this.getYear(movie.release_date),
-        description: movie.overview,
-        director: 'Unknown',
-        imagenUrl: this.getImageUrl(movie.poster_path),
-      };
-      this.peliculaService.addPelicula(pelicula);
-      console.log(`${pelicula.name} added to your list.`);
-      this.router.navigate(['/listar-peliculas']);
-      };
+  addMovie(movie: any){
+    const pelicula: Pelicula = {
+      name: movie.title,
+      year: this.getYear(movie.release_date),
+      description: movie.overview,
+      director: 'Unknown',
+      imagenUrl: this.getImageUrl(movie.poster_path),
+    };
+    this.peliculaService.addPelicula(pelicula);
+    this.router.navigate(['/listar-peliculas']);
+    console.log(`${pelicula.name} added to your list.`);
+    };
       
   onSearchInput(event: Event): void {
     const input = event.target as HTMLIonSearchbarElement;
     this.searchForm.get('query')?.setValue(input.value);
+  }
+
+  onSearchClear() {
+    this.movies = [];
+    this.searchForm.get('query')?.setValue('');
   }
 
 }

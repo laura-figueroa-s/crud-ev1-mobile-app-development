@@ -18,6 +18,7 @@
     <ion-searchbar
       [value]="searchForm.get('query')?.value"
       (ionInput)="onSearchInput($event)"
+      (ionClear)="onSearchClear()"
       placeholder="Buscar pelicula"
       name="query"
     >
