@@ -51,7 +51,7 @@ export class RegisterPage implements OnInit {
       console.error('Las contraseñas no coinciden');
       return;
     }
-    await this.storageService.registerUser(this.email, this.password, this.firstName, this.lastName);
+    await this.storageService.registerUser(email, password, firstName, lastName);
     this.router.navigate(['/login']);
   }
 

@@ -85,7 +85,7 @@
             </ion-text>
 
             <br>
-            <ion-button expand="block" [disabled]="registerForm.invalid || registerForm.get('repeatPassword')?.value !== registerForm.get('password')?.value" type="submit">Completar registro</ion-button>
+            <ion-button expand="block" [disabled]="registerForm.invalid || registerForm.get('repeatPassword')?.value !== registerForm.get('password')?.value" type="submit" (click)="registerUser()">Completar registro</ion-button>
           </form>
         </ion-card-content>
       </ion-card>
