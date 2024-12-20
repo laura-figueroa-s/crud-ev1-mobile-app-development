@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonList, IonCardContent, IonButton, IonButtons, IonItem, IonLabel, IonSearchbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonList, IonCardContent, IonButton, IonButtons, IonItem, IonLabel, IonSearchbar, IonIcon, IonFabButton } from '@ionic/angular/standalone';
 import { PeliculaService, Pelicula } from 'src/app/pelicula.service'; 
 import { Router } from '@angular/router';
 import { ApiTmdbService } from 'src/app/api-tmdb.service';
+import { addIcons } from 'ionicons';
+import { addCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-listar-peliculas',
   templateUrl: './listar-peliculas.page.html',
   styleUrls: ['./listar-peliculas.page.scss'],
   standalone: true,
-  imports: [IonSearchbar, IonLabel, IonItem, IonButtons, IonButton, IonCardContent, IonList, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, IonCardSubtitle, CommonModule, ReactiveFormsModule]
+  imports: [IonIcon,IonFabButton, IonSearchbar, IonLabel, IonItem, IonButtons, IonButton, IonCardContent, IonList, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, IonCardSubtitle, CommonModule, ReactiveFormsModule]
 })
 export class ListarPeliculasPage implements OnInit {
 
@@ -24,7 +26,9 @@ export class ListarPeliculasPage implements OnInit {
   constructor(
     private peliculaService: PeliculaService, 
     private router: Router, 
-    private apiTmdbService: ApiTmdbService) { }
+    private apiTmdbService: ApiTmdbService) { 
+      addIcons({ addCircleOutline });
+    }
 
   ngOnInit() {
     this.searchForm = new FormGroup({

@@ -48,7 +48,9 @@
         <p>{{ movie.release_date }}</p>
         <p>{{ movie.overview }}</p>
       </ion-label>
-      <ion-button slot="end" (click)="addMovie(movie)"></ion-button>
+      <ion-fab-button slot="end" (click)="addMovie(movie)">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
     </ion-item>
   </ion-list>
 
