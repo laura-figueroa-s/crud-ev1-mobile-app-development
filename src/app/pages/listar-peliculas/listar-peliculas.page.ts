@@ -75,6 +75,27 @@ export class ListarPeliculasPage implements OnInit {
       }
     }
 
+    getImageUrl(posterPath: string | null): string{
+      return posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}`
+      : 'assets/images/no-image.png'; // Fallback image
+    }
+
+    getYear(releaseDate: string | null): number {
+      return releaseDate ? parseInt(releaseDate.split('-')[0], 10) : 0;
+    }
+
+    addMovie(movie: any){
+      const pelicula: Pelicula = {
+        name: movie.title,
+        year: this.getYear(movie.release_date),
+        description: movie.overview,
+        director: 'Unknown',
+        imagenUrl: this.getImageUrl(movie.poster_path),
+      };
+      this.peliculaService.addPelicula(pelicula);
+      console.log(`${pelicula.name} added to your list.`);
+      };
+      
   onSearchInput(event: Event): void {
     const input = event.target as HTMLIonSearchbarElement;
     this.searchForm.get('query')?.setValue(input.value);

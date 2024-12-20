@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Storage } from '@ionic/storage-angular';
 
 export interface Pelicula {
   name: String;
@@ -31,33 +32,51 @@ export class PeliculaService {
       'Una monja norteamericana se une a un convento en la Italia rural, pero su estadía pronto se convierte en pesadilla cuando descubre los horribles secretos que ahí habitan.',
     imagenUrl: 'https://i.ytimg.com/vi/ewxS9Z-XXYo/maxresdefault.jpg',
   },
-  {
-    name: 'V for Vendetta',
-    year: 2005,
-    director: 'James McTeigue',
-    description:
-      'Un activista conocido como V pelea contra el sistema totalitario mediante tácticas terroristas.',
-    imagenUrl:
-      'https://m.media-amazon.com/images/S/pv-target-images/a01a95f5ccf69d4946bc47259a10f7fa9b5368963870bfe37c3c2f314e50ee2d.jpg',
-  },
  ]);
 
 
  peliculas$ = this.peliculasSubject.asObservable();
 
- constructor() {}
-
-
- addPelicula(pelicula: Pelicula) {
-   const peliculas = this.peliculasSubject.value;
-   this.peliculasSubject.next([...peliculas, pelicula]);
+ constructor(private storage: Storage) {
+  this.init();
  }
 
+ private async init() {
+  const storage = await this.storage.create();
+    this.storage = storage;
+  // Load stored movies when service is initialized
+  const peliculas = await this.storage.get('peliculas');
+  if (peliculas) {
+    this.peliculasSubject.next(peliculas);
+  }
+}
 
- deletePelicula(index: number) {
+ async addPelicula(pelicula: Pelicula) {
+  const peliculas = this.peliculasSubject.value;
+  peliculas.push(pelicula);
+  this.peliculasSubject.next(peliculas);
+  
+  // Save to local storage
+  await this.storage.set('peliculas', peliculas);
+}
+
+ async deletePelicula(index: number) {
    const peliculas = this.peliculasSubject.value;
    peliculas.splice(index, 1);
    this.peliculasSubject.next([...peliculas]);
+
+   await this.storage.set('peliculas', peliculas);
  }
 
+ addFromTmdb(movie: any){
+  const pelicula: Pelicula = {
+    name: movie.title,
+      year: new Date(movie.release_date).getFullYear(),
+      director: 'Unknown',
+      description: movie.overview,
+      imagenUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+    };
+
+    this.addPelicula(pelicula);
+  }
 }
