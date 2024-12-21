@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonButton, IonRow, IonCol, IonCard, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonInput, IonText, IonInputPasswordToggle, IonToggle } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
 
   form!: FormGroup
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storageService: StorageService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -30,7 +31,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  validateForm(){
+  async validateForm(){
     if(this.form.invalid){
       this.form.markAllAsTouched();
       return
@@ -39,6 +40,12 @@ export class LoginPage implements OnInit {
     const password = this.form.value.password;
     console.log("Email", email)
     console.log("password", password)
-    this.router.navigate(['listar-peliculas'])
+    const isValid = await this.storageService.loginUser(email, password);
+    if(isValid){
+      this.router.navigate(['listar-peliculas'])
+    } else {
+      console.error('Usuario no existe');
+    }
   }
+
 }

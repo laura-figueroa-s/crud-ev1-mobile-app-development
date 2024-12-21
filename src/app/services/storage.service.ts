@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import * as bcrypt from 'bcryptjs';
 
 export interface User {
   email: string;
@@ -38,14 +39,25 @@ export class StorageService {
   }
 
   public async registerUser(email: string, password: string, firstName: string, lastName: string){
+    const hashPassword = await bcrypt.hash(password, 10);
     const user: User = {
       email,
-      password,
+      password: hashPassword,
       firstName,
       lastName
     }
     const users = await this.get('users') || [];
     users.push(user);
     await this.set('users', users);
+  }
+
+  public async loginUser(email: string, password: string){
+    const users = await this.get('users') || [];
+    const user = users.find((user: User) => user.email === email);
+    if(user && await bcrypt.compare(password, user.password)){
+      return true;
+    } else {
+      return false;
+    }
   }
 }
